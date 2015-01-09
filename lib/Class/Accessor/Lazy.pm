@@ -2,7 +2,7 @@ package Class::Accessor::Lazy;
 use strict;
 use 5.006;
 use base 'Class::Accessor';
-$Class::Accessor::Lazy::VERSION = '0.35';
+$Class::Accessor::Lazy::VERSION = '0.36';
 use Class::Accessor::Lazy::Original;
 use Class::Accessor::Lazy::Fast;
 use Carp qw(confess);
