@@ -7,8 +7,4 @@ MANIFEST			This list of files
 META.json			Module JSON meta-data (added by MakeMaker)
 META.yml			Module YAML meta-data (added by MakeMaker)
 README
-t/00-load.t
 t/Class-Accessor-Lazy.t
-t/manifest.t
-t/pod-coverage.t
-t/pod.t

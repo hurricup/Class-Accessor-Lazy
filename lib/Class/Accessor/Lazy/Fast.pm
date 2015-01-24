@@ -1,8 +1,20 @@
 package Class::Accessor::Lazy::Fast;
-use strict;
-$Class::Accessor::Lazy::Fast::VERSION = '0.34';
+use strict; use warnings FATAL => 'all'; 
 use Exporter 'import';
 use Class::Accessor::Fast;
+
+our $VERSION = '1.000';
+
+sub new
+{
+    my( $proto, @args ) = @_;
+    $proto = ref $proto || $proto;
+    
+    my $self = $proto->SUPER::new(@args);
+    $self->{'__lazy_inits'} = {};
+    
+    return $self;
+}
 
 our @EXPORT;
 
@@ -26,22 +38,21 @@ sub fast_accessors{
 
 sub make_accessor {
     my ($class, $field) = @_;
-
+    
     return sub {
         my $self = shift;
         
         if(@_) 
         {
-            $self->{'__lazy_inits'}->{$field} = 1 unless exists $self->{'__lazy_inits'}->{$field};
+            $self->{'__lazy_inits'}->{$field} = 1;
             return $self->{$field} = $_[0];
         } 
         else
         {
-            unless (exists $self->{'__lazy_inits'}->{$field})
+            if( not exists $self->{'__lazy_inits'}->{$field} )
             {
                 my $init_method = "_lazy_init_$field";
                 $self->$init_method();
-                
                 $self->{'__lazy_inits'}->{$field} = 1;
             }
 
@@ -52,7 +63,7 @@ sub make_accessor {
 
 sub make_ro_accessor {
     my($class, $field) = @_;
-
+    
     return sub {
         my $self = shift;
 
@@ -63,11 +74,10 @@ sub make_ro_accessor {
         }
         else 
         {
-            unless (exists $self->{'__lazy_inits'}->{$field})
+            if( not exists $self->{'__lazy_inits'}->{$field} )
             {
                 my $init_method = "_lazy_init_$field";
                 $self->$init_method();
-
                 $self->{'__lazy_inits'}->{$field} = 1;
             }
             return $self->{$field};
@@ -82,7 +92,7 @@ sub make_wo_accessor {
     return sub {
         my $self = shift;
 
-        unless (@_) 
+        if( not scalar @_)  
         {
             my $caller = caller;
             $self->_croak("'$caller' cannot access the value of '$field' on objects of class '$class'");

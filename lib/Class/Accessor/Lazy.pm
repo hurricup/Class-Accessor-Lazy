@@ -1,22 +1,12 @@
 package Class::Accessor::Lazy;
-use strict;
+use strict; use warnings FATAL => 'all'; 
 use 5.006;
-use base 'Class::Accessor';
-$Class::Accessor::Lazy::VERSION = '0.36';
+use parent 'Class::Accessor';
 use Class::Accessor::Lazy::Original;
 use Class::Accessor::Lazy::Fast;
 use Carp qw(confess);
 
-sub new
-{
-    my($proto, $fields) = @_;
-    my($class) = ref $proto || $proto;
-
-    my $self = $class->SUPER::new($fields);
-    $self->{'__lazy_inits'} = {}; 
-
-    return $self;
-}
+our $VERSION = '1.000'; # change in pod
 
 sub mk_lazy_accessors {
     my($self, @fields) = @_;
@@ -126,12 +116,14 @@ sub mk_lazy_ro_accessors {
 1;
 
 __END__
-=pod
-
 =head1 NAME
 
-  Class::Accessor::Lazy - Automated accessor generation with lazy accessors and fast mode support.
+Class::Accessor::Lazy - class accessors generation with lazy accessors and fast mode support.
 
+=head1 VERSION
+
+Version 1.000
+  
 =head1 SYNOPSIS
 
     package Foo;
@@ -151,27 +143,23 @@ __END__
     
     # Meanwhile, in a nearby piece of code!
     # Class::Accessor::Lazy provides new().
-    my $mp = Foo->new({ name => "Marty", role => "JAPH" });
+    
+    my $foo = Foo->new({ name => "Marty", role => "JAPH" });
 
-    my $job = $mp->role;  # gets $mp->{role}
-    $mp->salary(400000);  # sets $mp->{salary} = 400000 # I wish
+    my $job = $foo->get_role;  # gets $foo->{role}
+    $foo->set_salary(400000);  # sets $foo->{salary} = 400000 # I wish
 
-    # like my @info = @{$mp}{qw(name role)}
-    my @info = $mp->get(qw(name role));
-
-    # $mp->{salary} = 400000
-    $mp->set('salary', 400000);
-
-
+    my $history = $foo->get_work_history;   # invokes _lazy_init_work_history
+    
+    .... some code
+    
+    some_function($foo->get_work_history);  # using data, read on first access
+    
 =head1 DESCRIPTION
 
-This module merges the power of two separate modules: L<Class::Accessor> and 
-L<Class::Accessor::Fast>. Additionaly providing methods to create lazy 
-properties.
+This module allowes you to create accessors and mutators for your class, using one of the modules: L<Class::Accessor> or L<Class::Accessor::Fast>, but, in addition, it allowes you to create lazy accessors.
 
-It can provide accessors creation methods for your class using two algorithms, 
-provided by modules above. But now you may change algorithm in 
-the code:
+You may create mix accessors in your module, use Fast and regular ones like this: 
 
     package Foo;
     use base qw(Class::Accessor::Lazy);
@@ -194,21 +182,13 @@ the code:
 Main documentation may be found on L<Class::Accessor> and 
 L<Class::Accessor::Fast> pages.
 
-The main extension of this module is possibility to make lazy properties, which
-will be inited on first get operation (if there was no write before).
+The main extension of this module is possibility to make lazy properties, which will be inited on first get operation (if there was no write before).
 
-Such methods are useful for database representation classes, where related
-data may not be read at all and there is no need to fetch it from database.
+Such methods are useful for database representation classes, where related data may not be read at all and there is no need to fetch it from database.
 
-For example, there are C<Shop> class and C<Employee> class. Each C<Shop> has 
-property C<employees>, which contains a reference to C<Employee> objects list. 
-But, you could fetch Shop object from database just to check C<income> property
-and no don't need information about employees at all. In this case, reading 
-employees list and creating list of C<Employee> objects makes absolutely no
-sense.
+For example, there are C<Shop> class and C<Employee> class. Each C<Shop> has property C<employees>, which contains a reference to C<Employee> objects list.  But, you could fetch Shop object from database just to check C<income> property and no don't need information about employees at all. In this case, reading employees list and creating list of C<Employee> objects makes absolutely no sense.
 
-But, if you want to get access to them, they should be read from database. And
-here are lazy properties comes:
+But, if you want to get access to them, they should be read from database. And here are lazy properties comes:
 
     package Shop;
     use base 'Class::Accessor::Lazy';
@@ -226,17 +206,13 @@ here are lazy properties comes:
         # property directly or using mutator set_employees
     }
 
-On first C<get_employees> invocation, method C<Shop::_lazy_init_employees> 
-will be invoked automatically, to allow your class to read related data from 
-database, for example, and store it in property. 
+On first C<get_employees> invocation, method C<Shop::_lazy_init_employees> will be invoked automatically, to allow your class to read related data from database, for example, and store it in object. 
 
-IMPORTANT: every lazy property of the class MUST have related init method. The
-name of such method is C<_lazy_init_{property name}>. 
+IMPORTANT: every lazy property of the class MUST have related init method. The name of such method is C<_lazy_init_{property name}>. 
 
 =head1 NEW METHODS
 
-There are couple of new methods in addition to L<Class::Accessor>s ones. Also, 
-class methods now returns C<$self> and you may use chain calls.
+There are couple of new methods in addition to L<Class::Accessor>s ones. Also, class methods now returns C<$self> and you may use chain calls.
 
 =head2 fast_acessors 
 
@@ -254,10 +230,7 @@ Same as C<mk_accessors>, but creating lazy ones.
 
 Same as C<mk_ro_accessors>, but creating lazy ones.
 
-there is no C<mk_lazy_wo_accessors> method.
-
-
-=head1 EFFICIENCY
+=head1 BENCHMARKING
 
  Accessors benchmark:
  Benchmark: timing 20000000 iterations of Acessor, AcessorF, Direct, Lazy, LazyF...
@@ -277,23 +250,27 @@ there is no C<mk_lazy_wo_accessors> method.
      
 Direct means direct access to the object property, and F suffix means using C<fast_accessors>.
 
-=head1 AUTHORS
+=head1 BUGS AND IMPROVEMENTS
 
-Copyright 2014 Alexandr Evstigneev <hurricup@gmail.com>
+If you found any bug and/or want to make some improvement, feel free to participate in the project on GitHub: L<https://github.com/hurricup/Class-Accessor-Lazy>
 
-Based on C<Class::Accessor> and C<Class::Accessor::Fast> code.
+=head1 LICENSE
 
-This program is free software; you can redistribute it and/or modify it under
-the same terms as Perl itself.  That means either (a) the GNU General Public
-License or (b) the Artistic License.
+This module is published under the terms of the MIT license, which basically means "Do with it whatever you want". For more information, see the LICENSE file that should be enclosed with this distributions. A copy of the license is (at the time of writing) also available at L<http://www.opensource.org/licenses/mit-license.php>.
 
 =head1 SEE ALSO
 
-See L<Class::Accessor>, L<Class::Accessor::Fast> and L<Class::Accessor::Faster> if speed is more
-important than flexibility.
+=over
 
-These are some modules which do similar things in different ways
-L<Class::Struct>, L<Class::Methodmaker>, L<Class::Generate>,
-L<Class::Class>, L<Class::Contract>, L<Moose>, L<Mouse>
+=item * Main project repository and bugtracker: L<https://github.com/hurricup/Class-Accessor-Lazy>
+
+=item * See also: L<Class::Variable>, L<Class::Property>, L<Class::Accessor> and L<Class::Accessor::Lazy>. 
+
+=back
+
+=head1 AUTHOR
+
+Copyright (C) 2014 by Alexandr Evstigneev (L<hurricup@evstigneev.com|mailto:hurricup@evstigneev.com>)
+
 
 =cut

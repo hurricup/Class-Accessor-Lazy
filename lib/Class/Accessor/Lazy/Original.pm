@@ -1,7 +1,8 @@
 package Class::Accessor::Lazy::Original;
-use strict;
-$Class::Accessor::Lazy::Original::VERSION = '0.34';
+use strict; use warnings FATAL => 'all'; 
 use Exporter 'import';
+
+our $VERSION = '0.34';
 
 our @EXPORT;
 
