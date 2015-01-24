@@ -1,0 +1,10 @@
+*	text=auto
+README	eol=lf
+Changes	eol=lf
+*.pl	eol=lf
+*.PL	eol=lf
+*.pm	eol=lf
+*.t		eol=lf
+*.xs	eol=lf
+*.h		eol=lf
+*.c		eol=lf
