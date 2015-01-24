@@ -19,7 +19,7 @@ WriteMakefile(
         'Exporter' => 0,
         'parent' => 0,
         'Class::Accessor' => 0,
-        'Class::Accessor::Lazy' => 0
+        'Class::Accessor::Fast' => 0
     }, 
     META_MERGE        => {
         'meta-spec' => { 

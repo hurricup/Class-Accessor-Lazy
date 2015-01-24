@@ -2,11 +2,11 @@ package Class::Accessor::Lazy::Original;
 use strict; use warnings FATAL => 'all'; 
 use Exporter 'import';
 
-our $VERSION = '0.34';
+our $VERSION = '1.000';
 
 our @EXPORT;
 
-push @EXPORT, 'original_accessor';
+push @EXPORT, 'original_accessors';
 sub original_accessors{
     my $self = shift;
     my $class = ref $self || $self;
