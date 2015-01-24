@@ -6,6 +6,9 @@ Perl implementation of lazy class accessors.
     Documentation on CPAN:
         http://search.cpan.org/~hurricup/Class-Accessor-Lazy/lib/Class/Accessor/Lazy.pm
 
+    Documentation on MetaCPAN
+        https://metacpan.org/pod/Class::Accessor::Lazy
+
     Testing results
         http://www.cpantesters.org/distro/C/Class-Accessor-Lazy.html
         
