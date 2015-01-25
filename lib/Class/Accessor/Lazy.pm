@@ -264,6 +264,12 @@ This module is published under the terms of the MIT license, which basically mea
 
 =item * Main project repository and bugtracker: L<https://github.com/hurricup/Class-Accessor-Lazy>
 
+=item * Testing results: http://www.cpantesters.org/distro/C/Class-Accessor-Lazy.html
+        
+=item * AnnoCPAN, Annotated CPAN documentation: http://annocpan.org/dist/Class-Accessor-Lazy
+
+=item * CPAN Ratings: http://cpanratings.perl.org/d/Class-Accessor-Lazy
+
 =item * See also: L<Class::Variable>, L<Class::Property>, L<Class::Accessor> and L<Class::Accessor::Lazy>. 
 
 =back

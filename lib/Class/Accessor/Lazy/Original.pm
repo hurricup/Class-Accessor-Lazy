@@ -62,7 +62,7 @@ sub make_ro_accessor {
         }
         else 
         {
-            unless (exists $self->{'__lazy_inits'}->{$field})
+            if (not exists $self->{'__lazy_inits'}->{$field})
             {
                 my $init_method = "_lazy_init_$field";
                 $self->$init_method();
