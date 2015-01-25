@@ -29,4 +29,4 @@ resources:
   bugtracker: https://github.com/hurricup/Class-Accessor-Lazy/issues
   license: http://www.opensource.org/licenses/mit-license.php
   repository: git://github.com/hurricup/Class-Accessor-Lazy.git
-version: '1.002'
+version: '1.003'

@@ -6,7 +6,7 @@ use Class::Accessor::Lazy::Original;
 use Class::Accessor::Lazy::Fast;
 use Carp qw(confess);
 
-our $VERSION = '1.002'; # change in pod
+our $VERSION = '1.003'; # change in pod
 
 sub mk_lazy_accessors {
     my($self, @fields) = @_;
@@ -122,7 +122,7 @@ Class::Accessor::Lazy - class accessors generation with lazy accessors and fast 
 
 =head1 VERSION
 
-Version 1.002
+Version 1.003
   
 =head1 SYNOPSIS
 
@@ -264,11 +264,11 @@ This module is published under the terms of the MIT license, which basically mea
 
 =item * Main project repository and bugtracker: L<https://github.com/hurricup/Class-Accessor-Lazy>
 
-=item * Testing results: http://www.cpantesters.org/distro/C/Class-Accessor-Lazy.html
+=item * Testing results: L<http://www.cpantesters.org/distro/C/Class-Accessor-Lazy.html>
         
-=item * AnnoCPAN, Annotated CPAN documentation: http://annocpan.org/dist/Class-Accessor-Lazy
+=item * AnnoCPAN, Annotated CPAN documentation: L<http://annocpan.org/dist/Class-Accessor-Lazy>
 
-=item * CPAN Ratings: http://cpanratings.perl.org/d/Class-Accessor-Lazy
+=item * CPAN Ratings: L<http://cpanratings.perl.org/d/Class-Accessor-Lazy>
 
 =item * See also: L<Class::Variable>, L<Class::Property>, L<Class::Accessor> and L<Class::Accessor::Lazy>. 
 
