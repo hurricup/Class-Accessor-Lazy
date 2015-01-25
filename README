@@ -1,7 +1,5 @@
-Class-Accessor-Lazy
-===================
-
-Perl implementation of lazy class accessors.
+Class-Accessor-Lazy - Perl implementation of lazy class accessors
+=================================================================
 
     Documentation on CPAN:
         http://search.cpan.org/~hurricup/Class-Accessor-Lazy/lib/Class/Accessor/Lazy.pm
@@ -9,8 +7,11 @@ Perl implementation of lazy class accessors.
     Documentation on MetaCPAN
         https://metacpan.org/pod/Class::Accessor::Lazy
 
-    Testing results
+    CPAN Testers reports
         http://www.cpantesters.org/distro/C/Class-Accessor-Lazy.html
+        
+    Testers matrix
+        http://matrix.cpantesters.org/?dist=Class-Accessor-Lazy
         
     AnnoCPAN, Annotated CPAN documentation
         http://annocpan.org/dist/Class-Accessor-Lazy

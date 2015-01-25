@@ -250,21 +250,15 @@ Same as C<mk_ro_accessors>, but creating lazy ones.
      
 Direct means direct access to the object property, and F suffix means using C<fast_accessors>.
 
-=head1 BUGS AND IMPROVEMENTS
-
-If you found any bug and/or want to make some improvement, feel free to participate in the project on GitHub: L<https://github.com/hurricup/Class-Accessor-Lazy>
-
-=head1 LICENSE
-
-This module is published under the terms of the MIT license, which basically means "Do with it whatever you want". For more information, see the LICENSE file that should be enclosed with this distributions. A copy of the license is (at the time of writing) also available at L<http://www.opensource.org/licenses/mit-license.php>.
-
 =head1 SEE ALSO
 
 =over
 
 =item * Main project repository and bugtracker: L<https://github.com/hurricup/Class-Accessor-Lazy>
 
-=item * Testing results: L<http://www.cpantesters.org/distro/C/Class-Accessor-Lazy.html>
+=item * CPAN Testers reports: L<http://www.cpantesters.org/distro/C/Class-Accessor-Lazy.html>
+
+=item * Testers matrix: L<http://matrix.cpantesters.org/?dist=Class-Accessor-Lazy>
         
 =item * AnnoCPAN, Annotated CPAN documentation: L<http://annocpan.org/dist/Class-Accessor-Lazy>
 
@@ -273,6 +267,10 @@ This module is published under the terms of the MIT license, which basically mea
 =item * See also: L<Class::Variable>, L<Class::Property>, L<Class::Accessor> and L<Class::Accessor::Lazy>. 
 
 =back
+
+=head1 LICENSE
+
+This module is published under the terms of the MIT license, which basically means "Do with it whatever you want". For more information, see the LICENSE file that should be enclosed with this distributions. A copy of the license is (at the time of writing) also available at L<http://www.opensource.org/licenses/mit-license.php>.
 
 =head1 AUTHOR
 
