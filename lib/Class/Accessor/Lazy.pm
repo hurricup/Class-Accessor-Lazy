@@ -1,6 +1,6 @@
 package Class::Accessor::Lazy;
 use strict; use warnings FATAL => 'all'; 
-use 5.006;
+use 5.008;
 use parent 'Class::Accessor';
 use Class::Accessor::Lazy::Original;
 use Class::Accessor::Lazy::Fast;

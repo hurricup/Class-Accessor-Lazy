@@ -5,7 +5,7 @@ WriteMakefile(
     AUTHOR              => 'Alexandr Evstigneev <hurricup@evstigneev.com>',
     VERSION_FROM        => 'lib/Class/Accessor/Lazy.pm', 
     ABSTRACT_FROM       => 'lib/Class/Accessor/Lazy.pm', 
-    MIN_PERL_VERSION    => 5.006,
+    MIN_PERL_VERSION    => 5.008,
     LICENSE             => 'MIT',
     CONFIGURE_REQUIRES => {
         'ExtUtils::MakeMaker' => 0,
