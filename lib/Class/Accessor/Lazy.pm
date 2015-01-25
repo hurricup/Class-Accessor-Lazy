@@ -6,7 +6,7 @@ use Class::Accessor::Lazy::Original;
 use Class::Accessor::Lazy::Fast;
 use Carp qw(confess);
 
-our $VERSION = '1.001'; # change in pod
+our $VERSION = '1.002'; # change in pod
 
 sub mk_lazy_accessors {
     my($self, @fields) = @_;
@@ -122,7 +122,7 @@ Class::Accessor::Lazy - class accessors generation with lazy accessors and fast 
 
 =head1 VERSION
 
-Version 1.000
+Version 1.002
   
 =head1 SYNOPSIS
 
